@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Handiy</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Sic enim censent, oportunitatis esse beate vivere. Nam, ut sint illa vendibiliora,
+        haec uberiora certe sunt. Duo Reges: constructio interrete. Habes, inquam, Cato,
+        formam eorum, de quibus loquor, philosophorum. Multoque hoc melius nos veriusque quam
+        Stoici. Graece donan, Latine voluptatem vocant.</string>
+    <string name="error">Error Tjoy!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
