@@ -5,6 +5,7 @@ import android.database.Observable;
 import com.handiy.handiy.data.BookmarkModel;
 import com.handiy.handiy.data.CreationModel;
 import com.handiy.handiy.data.TutorialModel;
+import com.handiy.handiy.data.UserModel;
 import com.handiy.handiy.util.AppConstants;
 
 import java.util.concurrent.TimeUnit;
@@ -14,8 +15,10 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -41,14 +44,16 @@ public interface APIService {
 
     @GET("/{username}/creations")
     Call<CreationModel.CreationListModel> getAllCreations(@Path("username") String username);
-    @GET("/{id}/creations")
-    Call<CreationModel.CreationListModel> getAllCreationsPerTutorial(@Path("id") String tutorialId);
 
-    @DELETE("/{username}/bookmarks/{bookmarks_id}")
-    Call<BookmarkModel.BookmarkListModel> deleteBookmark(@Path("username") String username, @Path("bookmarks_id") String bookmarks_id);
-
+    @Multipart
     @POST("/{username}/bookmarks")
     Observable<BookmarkModel.BookmarkListModel> postBookmark(@Path("username") String username, @Body TutorialModel tutorial);
+
+    @FormUrlEncoded
+    @POST("/users")
+    Call<UserModel> postSignIn(@Field("username") String username,
+                                                   @Field("email") String email,
+                                                   @Field("name") String name);
 
     class factory {
         public static APIService create() {

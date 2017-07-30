@@ -59,18 +59,14 @@
         android:textColorHint="@color/colorWhite"
         android:hint="Lupa password?"/>
 
-    <Button
+    <com.google.android.gms.common.SignInButton
         android:id="@+id/btn_sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
-        android:fontFamily="roboto"
-        android:background="@color/colorAccent"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textColorHint="@color/colorBlack"
-        android:hint="Masuk"/>
+        android:fontFamily="roboto" />
 
     <LinearLayout
         android:layout_width="match_parent"
