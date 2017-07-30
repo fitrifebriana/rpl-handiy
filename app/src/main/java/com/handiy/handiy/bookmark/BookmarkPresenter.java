@@ -2,7 +2,6 @@ package com.handiy.handiy.bookmark;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.handiy.handiy.R;
 import com.handiy.handiy.data.BookmarkModel;
@@ -63,6 +62,11 @@ public class BookmarkPresenter implements BookmarkContract.Presenter {
                 Log.d("test", t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void openBookmarkDetails(String extras) {
+        bookmarkView.showBookmarkDetailsDataView(extras);
     }
 
 

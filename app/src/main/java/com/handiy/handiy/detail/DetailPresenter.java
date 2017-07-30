@@ -1,6 +1,7 @@
 package com.handiy.handiy.detail;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -81,7 +82,8 @@ public class DetailPresenter implements DetailContract.Presenter{
                         " *** " + response.raw().toString());
                 detailsView.hideProgress();
                 if (response.isSuccessful()) {
-                    new Gson().toJson(tutorial);
+                    Intent i = new Intent();
+                    i.putExtra("result",new Gson().toJson(response.body().getResult()));
                     Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
                 }
             }

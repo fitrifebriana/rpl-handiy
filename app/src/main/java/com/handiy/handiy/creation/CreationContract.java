@@ -1,4 +1,4 @@
-package com.handiy.handiy.bookmark;
+package com.handiy.handiy.creation;
 
 import com.handiy.handiy.BasePresenter;
 import com.handiy.handiy.BaseView;
@@ -9,7 +9,7 @@ import java.util.List;
  * Created by FitriFebriana on 7/28/2017.
  */
 
-public interface BookmarkContract {
+public interface CreationContract {
     interface View extends BaseView {
         void showProgress();
 
@@ -17,13 +17,9 @@ public interface BookmarkContract {
 
         void showErrorMessage(String message);
 
-        void showBookmarkDetailsDataView(String extras);
-
-        void showBookmarkData(List<Object> bookmarkDataSet);
+        void showCreationData(List<Object> creationDataSet);
     }
     interface Presenter extends BasePresenter{
-        void loadBookmark(String username);
-
-        void openBookmarkDetails(String extras);
+        void loadCreation(String username);
     }
 }

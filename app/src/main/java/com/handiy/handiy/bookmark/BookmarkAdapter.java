@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.handiy.handiy.R;
 import com.handiy.handiy.data.BookmarkModel;
 
@@ -32,7 +33,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bookmark_grid_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
         return new BookmarkAdapter.ViewHolder(view);
     }
 
@@ -54,14 +55,15 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-            imgGridBookmark = (ImageView) itemView.findViewById(R.id.bookmark_imageview_grid);
+            imgGridBookmark = (ImageView) itemView.findViewById(R.id.imageview_grid);
             txtBookmarkTitle = (TextView) itemView.findViewById(R.id.tutorial_title);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-
+            BookmarkModel bookmarkData = (BookmarkModel) bookmarkDataSet.get(getAdapterPosition());
+            bookmarkItemClickListener.onBookmarkClick(new Gson().toJson(bookmarkData.getTutorial()));
         }
     }
 
@@ -71,7 +73,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
     }
 
     public interface BookmarkItemClickListener {
-
+        void onBookmarkClick(String extras);
     }
 
 }
