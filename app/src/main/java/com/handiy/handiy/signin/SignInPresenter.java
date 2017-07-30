@@ -31,20 +31,19 @@ public class SignInPresenter implements SignInContract.Presenter {
 
     @Override
     public void postSignIn(String username, String email, String name) {
-        Log.e("masuk","a");
         signInView.showProgress();
-        Call<UserModel.UserDataModel> call = APIService.factory.create().postSignIn(username, email, name);
-        call.enqueue(new Callback<UserModel.UserDataModel>() {
+        Call<UserModel> call = APIService.factory.create().postSignIn(username, email, name);
+        call.enqueue(new Callback<UserModel>() {
             @Override
-            public void onResponse(Call<UserModel.UserDataModel> call, Response<UserModel.UserDataModel> response) {
-               signInView.hideProgress();
-                if (response.isSuccessful()){
-                    signInView.showMainView(response.body().getData());
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                signInView.hideProgress();
+                if (response.isSuccessful()) {
+                    signInView.showLoginView(response.body().getUsername(), response.body().getEmail(), response.body().getName());
                 }
             }
 
             @Override
-            public void onFailure(Call<UserModel.UserDataModel> call, Throwable t) {
+            public void onFailure(Call<UserModel> call, Throwable t) {
                 signInView.hideProgress();
             }
         });

@@ -20,7 +20,7 @@ public class SignInContract {
 
         void showErrorMessage(String message);
 
-        void showMainView(List<UserModel> userDataModel);
+        void showLoginView(String username, String email, String name);
 
     }
 

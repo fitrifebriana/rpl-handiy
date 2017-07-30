@@ -104,7 +104,6 @@ public class SigninActivity extends AppCompatActivity implements SignInContract.
     }
 
     private void handleSignInResult(GoogleSignInResult result){
-        Log.e("masuk","b");
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()){
             GoogleSignInAccount account = result.getSignInAccount();
@@ -134,12 +133,12 @@ public class SigninActivity extends AppCompatActivity implements SignInContract.
     }
 
     @Override
-    public void showMainView(List<UserModel> userDataModel) {
-        Log.e("id ", userDataModel.get(0).getUsername());
+    public void showLoginView(String username, String email, String name) {
         Intent intent = new Intent(SigninActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
+
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

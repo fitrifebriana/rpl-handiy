@@ -51,7 +51,7 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("/users")
-    Call<UserModel.UserDataModel> postSignIn(@Field("username") String username,
+    Call<UserModel> postSignIn(@Field("username") String username,
                                                    @Field("email") String email,
                                                    @Field("name") String name);
 
