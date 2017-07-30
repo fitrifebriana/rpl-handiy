@@ -26,12 +26,13 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
 
     private Context context;
     TutorialModel tutorialModel;
-    List<TutorialModel> timelineDataSet;
-    List<TutorialModel> timelineDataSet2 = new ArrayList<>();
-    TimelineItemListener timelineItemListener;
+    private List<TutorialModel> timelineDataSet;
+    private List<TutorialModel> timelineDataSet2;
+    private TimelineItemListener timelineItemListener;
 
 
     public TimelineAdapter(Context context, List<TutorialModel> timelineDataSet, TimelineItemListener timelineItemListener) {
+        this.timelineDataSet2 = timelineDataSet;
         this.timelineDataSet = timelineDataSet;
         this.context = context;
         this.timelineItemListener = timelineItemListener;
@@ -45,14 +46,14 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        tutorialModel = timelineDataSet.get(position);
+        tutorialModel = timelineDataSet2.get(position);
         holder.tutorialTitle.setText(tutorialModel.getTitle());
         Glide.with(context).load(tutorialModel.getThumbnail()).into((holder).image);
     }
 
     @Override
     public int getItemCount() {
-        return timelineDataSet.size();
+        return timelineDataSet2.size();
     }
 
     @Override
@@ -112,6 +113,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
 
     public void replaceData(List<TutorialModel> timelineDataSet){
         this.timelineDataSet = timelineDataSet;
+        this.timelineDataSet2 = timelineDataSet;
         notifyDataSetChanged();
     }
 
