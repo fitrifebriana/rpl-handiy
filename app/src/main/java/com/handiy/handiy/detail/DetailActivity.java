@@ -17,21 +17,26 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.handiy.handiy.R;
+import com.handiy.handiy.data.BookmarkModel;
+import com.handiy.handiy.data.CreationModel;
 import com.handiy.handiy.data.TutorialModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailActivity extends AppCompatActivity implements DetailContract.View, DetailAdapter.DetailItemListener, SwipeRefreshLayout.OnRefreshListener {
+public class DetailActivity extends AppCompatActivity implements DetailContract.View, DetailAdapter.DetailItemListener, SwipeRefreshLayout.OnRefreshListener, CreationAdapter.DetailItemListener {
 
     private DetailAdapter detailAdapter;
     private RecyclerView rvSteps;
+    private RecyclerView rvCreations;
     private ImageView imgHeader;
     private TextView txtHeader;
+    private CreationAdapter creationAdapter;
     List<Object> detailDataSet = new ArrayList<>();
+    List<Object> creationDataSet = new ArrayList<>();
     private CheckBox cbBookmark;
 
-    Context context;
+    Context context = DetailActivity.this;
     SwipeRefreshLayout srDetail;
     DetailContract.Presenter presenter;
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this) {
@@ -50,6 +55,7 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
         initView();
         setupToolbar();
         setupRecyclerView();
+        setupCreationsRecyclerView();
 
         presenter = new DetailPresenter(this);
         presenter.start();
@@ -57,11 +63,11 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
             presenter.loadDetails(new Gson().fromJson(getIntent().getStringExtra("tutorial-detail"), TutorialModel.class).getId());
         }
 
-
         cbBookmark.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked){
+                    presenter.deleteBookmark("idzarunianti", new Gson().fromJson(getIntent().getStringExtra("tutorial-detail"), BookmarkModel.class).getBookmark_id());
                     Toast.makeText(getContext(), "Bookmarked", Toast.LENGTH_SHORT).show();
                 } else {
                     presenter.postBookmark("idzarunianti", new Gson().fromJson(getIntent().getStringExtra("tutorial-detail"), TutorialModel.class));
@@ -71,6 +77,13 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
         });
 
 
+    }
+
+    private void setupCreationsRecyclerView() {
+        rvCreations = (RecyclerView)findViewById(R.id.creation_recyclerview);
+        creationAdapter = new CreationAdapter(context, new ArrayList<>(), this);
+        rvCreations.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        rvCreations.setAdapter(creationAdapter);
     }
 
     private void initView() {
@@ -86,6 +99,7 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
         rvSteps.setAdapter(detailAdapter);
     }
 
+
     @Override
     public Context getContext() {
         return DetailActivity.this;
@@ -98,6 +112,13 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
         this.detailDataSet.clear();
         this.detailDataSet.addAll(details);
         detailAdapter.replaceData(this.detailDataSet);
+    }
+
+    @Override
+    public void showCreationsData(List<Object> creations) {
+        this.creationDataSet.clear();
+        this.creationDataSet.addAll(creations);
+        creationAdapter.replaceData(this.creationDataSet);
     }
 
     @Override
@@ -136,5 +157,6 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
     @Override
     public void onRefresh() {
         presenter.loadDetails(new Gson().fromJson(getIntent().getStringExtra("tutorial-detail"), TutorialModel.class).getId());
+        presenter.loadCreations(new Gson().fromJson(getIntent().getStringExtra("tutorial-detail"), CreationModel.class).getTutorial_id());
     }
 }

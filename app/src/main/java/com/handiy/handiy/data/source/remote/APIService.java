@@ -14,8 +14,8 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -41,8 +41,12 @@ public interface APIService {
 
     @GET("/{username}/creations")
     Call<CreationModel.CreationListModel> getAllCreations(@Path("username") String username);
+    @GET("/{id}/creations")
+    Call<CreationModel.CreationListModel> getAllCreationsPerTutorial(@Path("id") String tutorialId);
 
-    @Multipart
+    @DELETE("/{username}/bookmarks/{bookmarks_id}")
+    Call<BookmarkModel.BookmarkListModel> deleteBookmark(@Path("username") String username, @Path("bookmarks_id") String bookmarks_id);
+
     @POST("/{username}/bookmarks")
     Observable<BookmarkModel.BookmarkListModel> postBookmark(@Path("username") String username, @Body TutorialModel tutorial);
 

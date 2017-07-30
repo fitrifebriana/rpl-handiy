@@ -9,7 +9,7 @@ import java.util.List;
  */
 
 public class BookmarkModel {
-    private String bookmark_id;
+    private String bookmarks_id;
     private String tutorial_id;
     private String username;
     private Tutorial tutorial;
@@ -53,11 +53,11 @@ public class BookmarkModel {
     }
 
     public String getBookmark_id() {
-        return bookmark_id;
+        return bookmarks_id;
     }
 
     public void setBookmark_id(String bookmark_id) {
-        this.bookmark_id = bookmark_id;
+        this.bookmarks_id = bookmark_id;
     }
 
     public String getTutorial_id() {
