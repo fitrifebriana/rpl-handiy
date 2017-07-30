@@ -19,7 +19,6 @@ import retrofit2.Response;
 
 public class SignInPresenter implements SignInContract.Presenter {
     private final SignInContract.View signInView;
-    List<UserModel> list;
 
     public SignInPresenter(SignInContract.View signInView) {
         this.signInView = signInView;
@@ -40,14 +39,12 @@ public class SignInPresenter implements SignInContract.Presenter {
             public void onResponse(Call<UserModel.UserDataModel> call, Response<UserModel.UserDataModel> response) {
                signInView.hideProgress();
                 if (response.isSuccessful()){
-                    list.clear();
                     signInView.showMainView(response.body().getData());
                 }
             }
 
             @Override
             public void onFailure(Call<UserModel.UserDataModel> call, Throwable t) {
-                list.clear();
                 signInView.hideProgress();
             }
         });
