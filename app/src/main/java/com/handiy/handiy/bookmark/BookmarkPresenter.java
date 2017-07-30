@@ -64,5 +64,10 @@ public class BookmarkPresenter implements BookmarkContract.Presenter {
         });
     }
 
+    @Override
+    public void openBookmarkDetails(String extras) {
+        bookmarkView.showBookmarkDetailsDataView(extras);
+    }
+
 
 }

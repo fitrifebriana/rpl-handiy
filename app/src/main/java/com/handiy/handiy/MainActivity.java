@@ -60,9 +60,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_marked:
                 Intent intentMarked = new Intent(MainActivity.this, BookmarkActivity.class);
                 startActivity(intentMarked);
+                break;
             case R.id.action_my_creation:
                 Intent intentCreation = new Intent(MainActivity.this, CreationActivity.class);
                 startActivity(intentCreation);
+                break;
             default:
                 break;
         }

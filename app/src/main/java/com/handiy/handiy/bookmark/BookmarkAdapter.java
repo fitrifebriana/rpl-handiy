@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.handiy.handiy.R;
 import com.handiy.handiy.data.BookmarkModel;
 
@@ -61,7 +62,8 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
 
         @Override
         public void onClick(View view) {
-
+            BookmarkModel bookmarkData = (BookmarkModel) bookmarkDataSet.get(getAdapterPosition());
+            bookmarkItemClickListener.onBookmarkClick(new Gson().toJson(bookmarkData.getTutorial()));
         }
     }
 
@@ -71,7 +73,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
     }
 
     public interface BookmarkItemClickListener {
-
+        void onBookmarkClick(String extras);
     }
 
 }

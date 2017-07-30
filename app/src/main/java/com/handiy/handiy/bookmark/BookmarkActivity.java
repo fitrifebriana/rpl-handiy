@@ -1,6 +1,7 @@
 package com.handiy.handiy.bookmark;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.handiy.handiy.R;
+import com.handiy.handiy.detail.DetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +95,13 @@ public class BookmarkActivity extends AppCompatActivity implements BookmarkContr
     }
 
     @Override
+    public void showBookmarkDetailsDataView(String extras) {
+        Intent intent = new Intent(BookmarkActivity.this, DetailActivity.class);
+        intent.putExtra("tutorial-detail", extras);
+        startActivity(intent);
+    }
+
+    @Override
     public void showBookmarkData(List<Object> bookmarks) {
         this.bookmarkDataSet.clear();
         this.bookmarkDataSet.addAll(bookmarks);
@@ -108,6 +117,11 @@ public class BookmarkActivity extends AppCompatActivity implements BookmarkContr
     public boolean onSupportNavigateUp() {
         finish();
         return true;
+    }
+
+    @Override
+    public void onBookmarkClick(String extras) {
+        presenter.openBookmarkDetails(extras);
     }
 }
 

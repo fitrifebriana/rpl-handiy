@@ -17,9 +17,13 @@ public interface BookmarkContract {
 
         void showErrorMessage(String message);
 
+        void showBookmarkDetailsDataView(String extras);
+
         void showBookmarkData(List<Object> bookmarkDataSet);
     }
     interface Presenter extends BasePresenter{
         void loadBookmark(String username);
+
+        void openBookmarkDetails(String extras);
     }
 }
