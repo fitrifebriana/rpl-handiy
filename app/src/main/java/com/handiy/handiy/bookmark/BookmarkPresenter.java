@@ -2,7 +2,6 @@ package com.handiy.handiy.bookmark;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.handiy.handiy.R;
 import com.handiy.handiy.data.BookmarkModel;

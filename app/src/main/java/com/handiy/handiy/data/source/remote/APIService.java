@@ -3,6 +3,7 @@ package com.handiy.handiy.data.source.remote;
 import android.database.Observable;
 
 import com.handiy.handiy.data.BookmarkModel;
+import com.handiy.handiy.data.CreationModel;
 import com.handiy.handiy.data.TutorialModel;
 import com.handiy.handiy.util.AppConstants;
 
@@ -37,6 +38,9 @@ public interface APIService {
 
     @GET("/{username}/bookmarks")
     Call<BookmarkModel.BookmarkListModel> getAllBookmarks(@Path("username") String username);
+
+    @GET("/{username}/creations")
+    Call<CreationModel.CreationListModel> getAllCreations(@Path("username") String username);
 
     @Multipart
     @POST("/{username}/bookmarks")

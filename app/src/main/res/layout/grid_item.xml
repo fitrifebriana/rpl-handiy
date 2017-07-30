@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/bookmark_imageview_grid"
+            android:id="@+id/imageview_grid"
             android:layout_width="172dp"
             android:layout_height="172dp"
             android:background="@android:color/transparent"

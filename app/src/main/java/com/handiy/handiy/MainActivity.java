@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.handiy.handiy.bookmark.BookmarkActivity;
+import com.handiy.handiy.creation.CreationActivity;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -57,8 +58,11 @@ public class MainActivity extends AppCompatActivity {
                 // Not implemented here
                 return false;
             case R.id.action_marked:
-                Intent intent = new Intent(MainActivity.this, BookmarkActivity.class);
-                startActivity(intent);
+                Intent intentMarked = new Intent(MainActivity.this, BookmarkActivity.class);
+                startActivity(intentMarked);
+            case R.id.action_my_creation:
+                Intent intentCreation = new Intent(MainActivity.this, CreationActivity.class);
+                startActivity(intentCreation);
             default:
                 break;
         }

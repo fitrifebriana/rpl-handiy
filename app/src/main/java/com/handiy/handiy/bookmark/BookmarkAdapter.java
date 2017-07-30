@@ -32,7 +32,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bookmark_grid_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
         return new BookmarkAdapter.ViewHolder(view);
     }
 
@@ -54,7 +54,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-            imgGridBookmark = (ImageView) itemView.findViewById(R.id.bookmark_imageview_grid);
+            imgGridBookmark = (ImageView) itemView.findViewById(R.id.imageview_grid);
             txtBookmarkTitle = (TextView) itemView.findViewById(R.id.tutorial_title);
             itemView.setOnClickListener(this);
         }
