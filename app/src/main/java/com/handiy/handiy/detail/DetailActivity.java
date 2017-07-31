@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -34,6 +36,7 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
     List<Object> detailDataSet = new ArrayList<>();
     List<Object> creationDataSet = new ArrayList<>();
     private CheckBox cbBookmark;
+    private Button btnAddCreation;
 
     Context context = DetailActivity.this;
     SwipeRefreshLayout srDetail;
@@ -66,14 +69,19 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked){
-                    presenter.deleteBookmark("idzarunianti", new Gson().fromJson(getIntent().getStringExtra("tutorial-detail"), BookmarkModel.class).getBookmark_id());
+                    presenter.deleteBookmark("idzarunianti", new Gson().fromJson(getIntent().getStringExtra("tutorial-detail"), BookmarkModel.class).getTutorial_id());
                 } else {
-                    presenter.postBookmark("idzarunianti", new Gson().fromJson(getIntent().getStringExtra("tutorial-detail"), BookmarkModel.class).getTutorial());
+                    presenter.postBookmark("idzarunianti", new Gson().fromJson(getIntent().getStringExtra("tutorial-detail"), BookmarkModel.class).getTutorial_id());
                 }
             }
         });
 
-
+        btnAddCreation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //nampil dialog tambah kreasu
+            }
+        });
     }
 
     private void setupCreationsRecyclerView() {
@@ -87,6 +95,7 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
         cbBookmark = (CheckBox)findViewById(R.id.checkbox_bookmark);
         imgHeader = (ImageView)findViewById(R.id.tutorialdetail_imageview_header);
         txtHeader = (TextView)findViewById(R.id.tutorialdetail_textview_header);
+        btnAddCreation = (Button)findViewById(R.id.detail_button_add_creation);
     }
 
     private void setupRecyclerView() {

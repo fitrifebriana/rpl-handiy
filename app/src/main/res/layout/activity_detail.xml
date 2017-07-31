@@ -96,6 +96,7 @@
                 android:minHeight="100dp"/>
 
             <Button
+                android:id="@+id/detail_button_add_creation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Add My Creation"
