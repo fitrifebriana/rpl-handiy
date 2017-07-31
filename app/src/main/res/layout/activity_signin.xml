@@ -27,71 +27,12 @@
         android:fontFamily="roboto"
         android:text="Masuk untuk mulai berkreasi.."/>
 
-    <EditText
-        android:id="@+id/txt_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:inputType="textEmailAddress|textNoSuggestions"
-        android:fontFamily="roboto"
-        android:textColorHint="@color/colorWhite"
-        android:hint="Email"
-        android:backgroundTint="#ffffff" />
-
-    <EditText
-        android:id="@+id/txt_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:inputType="textPassword|textNoSuggestions"
-        android:fontFamily="roboto"
-        android:textColorHint="@color/colorWhite"
-        android:hint="Password"
-        android:backgroundTint="#ffffff" />
-
-    <Button
-        android:id="@+id/btn_forget_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:fontFamily="roboto"
-        android:background="?selectableItemBackgroundBorderless"
-        android:textColorHint="@color/colorWhite"
-        android:hint="Lupa password?"/>
-
     <com.google.android.gms.common.SignInButton
         android:id="@+id/btn_sign_in"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:fontFamily="roboto" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@color/colorWhite"
-            android:fontFamily="roboto"
-            android:text="Belum memiliki akun?"/>
-
-        <Button
-            android:id="@+id/btn_activity_sign_up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?selectableItemBackgroundBorderless"
-            android:textStyle="bold"
-            android:textColorHint="@color/colorWhite"
-            android:fontFamily="roboto"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:hint="Daftar"/>
-    </LinearLayout>
 </LinearLayout>

@@ -1,7 +1,5 @@
 package com.handiy.handiy.data.source.remote;
 
-import android.database.Observable;
-
 import com.handiy.handiy.data.BookmarkModel;
 import com.handiy.handiy.data.CreationModel;
 import com.handiy.handiy.data.TutorialModel;
@@ -14,11 +12,10 @@ import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -45,9 +42,22 @@ public interface APIService {
     @GET("/{username}/creations")
     Call<CreationModel.CreationListModel> getAllCreations(@Path("username") String username);
 
-    @Multipart
+    @GET("/{id}/creations")
+    Call<CreationModel.CreationListModel> getAllCreationsPerTutorial(@Path("id") String id);
+
+    @DELETE("/{username}/bookmarks/{bookmarks_id}")
+    Call<BookmarkModel.BookmarkListModel> deleteBookmark(@Path("username") String username, @Path("bookmarks_id") String bookmarksId);
+
+    @DELETE("/{username}/creations/{creation_id}")
+    Call<CreationModel.CreationListModel> deleteCreation(@Path("username") String username, @Path("creation_id") String creationId);
+
+    @FormUrlEncoded
     @POST("/{username}/bookmarks")
-    Observable<BookmarkModel.BookmarkListModel> postBookmark(@Path("username") String username, @Body TutorialModel tutorial);
+    Call<BookmarkModel.BookmarkListModel> postBookmark(@Path("username") String username, @Field("tutorial_id") String tutorialId);
+
+    @FormUrlEncoded
+    @POST("/{username}/creations")
+    Call<CreationModel.CreationListModel> postCreation(@Path("username") String username, @Field("tutorial_id") String tutorialId);
 
     @FormUrlEncoded
     @POST("/users")

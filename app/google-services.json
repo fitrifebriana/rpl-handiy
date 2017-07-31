@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "555487695881",
+    "project_id": "handiy-175313"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555487695881:android:d5404b2d865a92ce",
+        "android_client_info": {
+          "package_name": "com.handiy.handiy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "555487695881-ueehrs2do2955d3mdgb3qmo6qn3vcmuk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.handiy.handiy",
+            "certificate_hash": "6ee43dd44c7aa15f56414ec0f867e1e8cb01f27e"
+          }
+        },
+        {
+          "client_id": "555487695881-g64q2dtjd73kdguinvbfpj6mmk8l2otp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_0aidT6O2F_opxs93kX2jNpA5aCmFUk0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

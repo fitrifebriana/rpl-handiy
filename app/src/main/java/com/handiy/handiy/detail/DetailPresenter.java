@@ -1,11 +1,9 @@
 package com.handiy.handiy.detail;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.handiy.handiy.R;
 import com.handiy.handiy.data.BookmarkModel;
 import com.handiy.handiy.data.CreationModel;
@@ -69,20 +67,18 @@ public class DetailPresenter implements DetailContract.Presenter{
     }
 
     @Override
-    public void postBookmark(String username, final TutorialModel tutorial) {
+    public void postBookmark(final String username, String tutorialId) {
         final Context context = detailsView.getContext();
 
         APIService apiService = APIService.factory.create();
-        Call<BookmarkModel.BookmarkListModel> call = (Call<BookmarkModel.BookmarkListModel>) apiService.postBookmark(username, tutorial);
+        Call<BookmarkModel.BookmarkListModel> call =  apiService.postBookmark(username, tutorialId);
         call.enqueue(new Callback<BookmarkModel.BookmarkListModel>() {
             @Override
             public void onResponse(Call<BookmarkModel.BookmarkListModel> call, Response<BookmarkModel.BookmarkListModel> response) {
                 Log.d("testing", "response: "+response.message()+" *** "+response.code()+" *** "+response.isSuccessful() +
                         " *** " + response.raw().toString());
                 if (response.isSuccessful()) {
-                    Intent i = new Intent();
-                    i.putExtra("result",new Gson().toJson(response.body().getResult()));
-                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Bookmarked", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -99,16 +95,15 @@ public class DetailPresenter implements DetailContract.Presenter{
         final Context context = detailsView.getContext();
 
         APIService apiService = APIService.factory.create();
-        Call<BookmarkModel.BookmarkListModel> call = (Call<BookmarkModel.BookmarkListModel>) apiService.deleteBookmark(username, bookmarks_id);
+        Call<BookmarkModel.BookmarkListModel> call = apiService.deleteBookmark(username, bookmarks_id);
         call.enqueue(new Callback<BookmarkModel.BookmarkListModel>() {
+
             @Override
             public void onResponse(Call<BookmarkModel.BookmarkListModel> call, Response<BookmarkModel.BookmarkListModel> response) {
                 Log.d("testing", "response: "+response.message()+" *** "+response.code()+" *** "+response.isSuccessful() +
                         " *** " + response.raw().toString());
                 if (response.isSuccessful()) {
-                    Intent i = new Intent();
-                    i.putExtra("result",new Gson().toJson(response.body().getResult()));
-                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Bookmark Unchecked", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -151,7 +146,52 @@ public class DetailPresenter implements DetailContract.Presenter{
     }
 
     @Override
-    public void postCreation(String tutorialId, String username) {
+    public void postCreation(String username, String tutorialId) {
+        final Context context = detailsView.getContext();
+        final String txtError = context.getResources().getString(R.string.error);
 
+        APIService apiService = APIService.factory.create();
+        Call<CreationModel.CreationListModel> call = apiService.postCreation(username, tutorialId);
+        call.enqueue(new Callback<CreationModel.CreationListModel>() {
+            @Override
+            public void onResponse(Call<CreationModel.CreationListModel> call, Response<CreationModel.CreationListModel> response) {
+                Log.d("testing", "response: "+response.message()+" *** "+response.code()+" *** "+response.isSuccessful() +
+                        " *** " + response.raw().toString());
+                detailsView.hideProgress();
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CreationModel.CreationListModel> call, Throwable t) {
+                detailsView.showError(txtError);
+            }
+        });
+    }
+
+    @Override
+    public void deleteCreation(String tutorialId, String username) {
+        final Context context = detailsView.getContext();
+        final String txtError = context.getResources().getString(R.string.error);
+
+        APIService apiService = APIService.factory.create();
+        Call<CreationModel.CreationListModel> call = apiService.deleteCreation(tutorialId, username);
+        call.enqueue(new Callback<CreationModel.CreationListModel>() {
+            @Override
+            public void onResponse(Call<CreationModel.CreationListModel> call, Response<CreationModel.CreationListModel> response) {
+                Log.d("testing", "response: "+response.message()+" *** "+response.code()+" *** "+response.isSuccessful() +
+                        " *** " + response.raw().toString());
+                detailsView.hideProgress();
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CreationModel.CreationListModel> call, Throwable t) {
+                detailsView.showError(txtError);
+            }
+        });
     }
 }

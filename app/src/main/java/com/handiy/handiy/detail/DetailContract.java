@@ -2,7 +2,6 @@ package com.handiy.handiy.detail;
 
 import com.handiy.handiy.BasePresenter;
 import com.handiy.handiy.BaseView;
-import com.handiy.handiy.data.TutorialModel;
 
 import java.util.List;
 
@@ -26,12 +25,14 @@ public interface DetailContract {
     interface Presenter extends BasePresenter {
         void loadDetails(String tutorialId);
 
-        void postBookmark(String username, TutorialModel tutorial);
+        void postBookmark(String username, String tutorialId);
 
         void deleteBookmark(String username, String bookmarks_id);
 
         void loadCreations(String tutorialId);
 
-        void postCreation(String tutorialId, String username);
+        void postCreation(String username,  String tutorialId);
+
+        void deleteCreation(String tutorialId, String username);
     }
 }

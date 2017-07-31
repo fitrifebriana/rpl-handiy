@@ -12,7 +12,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -68,10 +67,8 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked){
                     presenter.deleteBookmark("idzarunianti", new Gson().fromJson(getIntent().getStringExtra("tutorial-detail"), BookmarkModel.class).getBookmark_id());
-                    Toast.makeText(getContext(), "Bookmarked", Toast.LENGTH_SHORT).show();
                 } else {
-                    presenter.postBookmark("idzarunianti", new Gson().fromJson(getIntent().getStringExtra("tutorial-detail"), TutorialModel.class));
-                    Toast.makeText(getContext(), "Bookmark Unchecked", Toast.LENGTH_SHORT).show();
+                    presenter.postBookmark("idzarunianti", new Gson().fromJson(getIntent().getStringExtra("tutorial-detail"), BookmarkModel.class).getTutorial());
                 }
             }
         });
